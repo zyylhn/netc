@@ -113,7 +113,7 @@ func (d *Dialer) getFreePort() int {
 	defer func() {
 		d.lock.Unlock()
 	}()
-	port := getLocalAddr.GetFreePortMap(d.usingPort)
+	port := getlocaladdr.GetFreePortMap(d.usingPort)
 	d.usingPort[port] = struct{}{}
 	return port
 }
@@ -150,7 +150,7 @@ func (d *Dialer) DialTcpWithTimeoutIndexLocalIp(addr string, timeout time.Durati
 		if err != nil {
 			return nil, err
 		}
-		localIP = getLocalAddr.GetLocalIPWithTargetIP(ip)
+		localIP = getlocaladdr.GetLocalIPWithTargetIP(ip)
 		if localIP == "" {
 			return nil, fmt.Errorf("get route to target error")
 		}
